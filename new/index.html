@@ -10,10 +10,13 @@
             --secondary: #2c7fb8;
             --accent: #41b6c4;
             --light: #a1dab4;
-            --bg: #f7f7f7;
-            --text: #333;
+            --bg: #f8f9fa;
+            --text: #2c3e50;
+            --text-light: #6c757d;
             --white: #fff;
-            --shadow: rgba(0,0,0,0.1);
+            --shadow: rgba(0,0,0,0.08);
+            --shadow-hover: rgba(0,0,0,0.15);
+            --border: #e9ecef;
         }
 
         * {
@@ -97,7 +100,7 @@
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: var(--white);
-            padding: 4rem 0;
+            padding: 3rem 0;
             margin-bottom: 3rem;
         }
 
@@ -114,6 +117,8 @@
             border-radius: 50%;
             border: 5px solid var(--white);
             box-shadow: 0 5px 15px var(--shadow);
+            object-fit: cover;
+            object-position: center;
         }
 
         .hero-text h1 {
@@ -130,8 +135,16 @@
 
         .contact-info {
             display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .contact-info a {
@@ -140,6 +153,16 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+
+        .contact-icon {
+            width: 20px;
+            text-align: center;
         }
 
         /* Categories */
@@ -156,16 +179,18 @@
 
         .category-card {
             background: var(--white);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 2rem;
-            box-shadow: 0 2px 10px var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px var(--shadow);
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px var(--shadow);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow-hover);
+            border-color: var(--primary);
         }
 
         .category-icon {
@@ -205,10 +230,17 @@
             background: var(--white);
             border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: 0 2px 5px var(--shadow);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px var(--shadow);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .content-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 3px 10px var(--shadow-hover);
         }
 
         .content-info h4 {
@@ -240,6 +272,47 @@
             background: var(--primary);
         }
 
+        /* Navigation */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.8;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateX(-3px);
+        }
+
         /* Search */
         .search-box {
             margin: 2rem 0;
@@ -248,16 +321,18 @@
 
         .search-input {
             width: 100%;
-            padding: 1rem 3rem 1rem 1rem;
-            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border: 1px solid var(--border);
             border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            background: var(--white);
         }
 
         .search-input:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 84, 144, 0.1);
         }
 
         /* Footer */
@@ -329,8 +404,18 @@
                     <h2 data-i18n="title">Professor of Physics, Karakalpak State University</h2>
                     <p data-i18n="description">Academic works, translations, and contributions to Karakalpak literature and science</p>
                     <div class="contact-info">
-                        <a href="mailto:bakh.abdik@gmail.com">📧 bakh.abdik@gmail.com</a>
-                        <a href="tel:+998903500565">📞 +998 90 350-05-65</a>
+                        <div>
+                            <span class="contact-icon">📍</span>
+                            <span data-i18n="address">Department of Physics, Karakalpak State University, Nukus</span>
+                        </div>
+                        <div>
+                            <span class="contact-icon">📧</span>
+                            <a href="mailto:bakh.abdik@gmail.com">bakh.abdik@gmail.com</a>
+                        </div>
+                        <div>
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:+998975000251">+998 97 500 02 51</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -379,6 +464,10 @@
         </section>
 
         <section id="karakalpak-lit" class="content-section">
+            <a href="#" onclick="showSection('categories')" class="back-button">
+                <span>←</span>
+                <span data-i18n="back-to-categories">Back to Categories</span>
+            </a>
             <h2 data-i18n="kk-lit-title">Karakalpak Literature</h2>
             <div class="content-grid" id="kk-lit-content">
                 <!-- Content will be populated by JavaScript -->
@@ -386,6 +475,10 @@
         </section>
 
         <section id="physics-books" class="content-section">
+            <a href="#" onclick="showSection('categories')" class="back-button">
+                <span>←</span>
+                <span data-i18n="back-to-categories">Back to Categories</span>
+            </a>
             <h2 data-i18n="physics-title">Physics Textbooks</h2>
             <div class="content-grid" id="physics-content">
                 <!-- Content will be populated by JavaScript -->
@@ -393,6 +486,10 @@
         </section>
 
         <section id="scientific-articles" class="content-section">
+            <a href="#" onclick="showSection('categories')" class="back-button">
+                <span>←</span>
+                <span data-i18n="back-to-categories">Back to Categories</span>
+            </a>
             <h2 data-i18n="articles-title">Scientific Articles</h2>
             <div class="content-grid" id="articles-content">
                 <!-- Content will be populated by JavaScript -->
@@ -400,6 +497,10 @@
         </section>
 
         <section id="educational" class="content-section">
+            <a href="#" onclick="showSection('categories')" class="back-button">
+                <span>←</span>
+                <span data-i18n="back-to-categories">Back to Categories</span>
+            </a>
             <h2 data-i18n="edu-title">Educational Materials</h2>
             <div class="content-grid" id="edu-content">
                 <!-- Content will be populated by JavaScript -->
@@ -407,6 +508,10 @@
         </section>
 
         <section id="translations" class="content-section">
+            <a href="#" onclick="showSection('categories')" class="back-button">
+                <span>←</span>
+                <span data-i18n="back-to-categories">Back to Categories</span>
+            </a>
             <h2 data-i18n="trans-title">Translations</h2>
             <div class="content-grid" id="trans-content">
                 <!-- Content will be populated by JavaScript -->
@@ -414,6 +519,10 @@
         </section>
 
         <section id="cultural" class="content-section">
+            <a href="#" onclick="showSection('categories')" class="back-button">
+                <span>←</span>
+                <span data-i18n="back-to-categories">Back to Categories</span>
+            </a>
             <h2 data-i18n="cultural-title">Cultural Heritage</h2>
             <div class="content-grid" id="cultural-content">
                 <!-- Content will be populated by JavaScript -->
@@ -468,7 +577,9 @@
                 'about-title': 'About Professor Abdikamalov',
                 'about-text': 'Professor Bakhtiyar Abdikamalov is a distinguished physicist and educator at Karakalpak State University in Nukus, Uzbekistan. His contributions span multiple fields, including physics education, scientific translation, and the preservation of Karakalpak cultural heritage. Through his extensive work translating fundamental physics texts into the Karakalpak language, he has made scientific knowledge accessible to Karakalpak-speaking students and researchers. His dedication to both science and culture exemplifies the bridge between modern academic pursuits and traditional heritage preservation.',
                 'footer-text': '© 2024 Professor Bakhtiyar Abdikamalov. All rights reserved.',
-                'download': 'Download'
+                'download': 'Download',
+                'address': 'Department of Physics, Karakalpak State University, Nukus',
+                'back-to-categories': 'Back to Categories'
             },
             ru: {
                 'site-title': 'Академические работы',
@@ -501,7 +612,9 @@
                 'about-title': 'О профессоре Абдикамалове',
                 'about-text': 'Профессор Бахтияр Абдикамалов - выдающийся физик и педагог Каракалпакского государственного университета в Нукусе, Узбекистан. Его вклад охватывает множество областей, включая физическое образование, научные переводы и сохранение каракалпакского культурного наследия. Благодаря его обширной работе по переводу фундаментальных физических текстов на каракалпакский язык, он сделал научные знания доступными для каракалпакоязычных студентов и исследователей. Его преданность как науке, так и культуре является примером моста между современными академическими достижениями и сохранением традиционного наследия.',
                 'footer-text': '© 2024 Профессор Бахтияр Абдикамалов. Все права защищены.',
-                'download': 'Скачать'
+                'download': 'Скачать',
+                'address': 'Кафедра физики, Каракалпакский государственный университет, Нукус',
+                'back-to-categories': 'Вернуться к категориям'
             },
             kaa: {
                 'site-title': 'Академиялық мийнетлер',
@@ -534,7 +647,9 @@
                 'about-title': 'Профессор Әбдикамалов ҳаққында',
                 'about-text': 'Профессор Бахтияр Әбдикамалов - Өзбекстанның Нөкис қаласындағы Қарақалпақ мәмлекетлик университетиниң көрнекли физиги ҳәм оқытыўшысы. Оның үлеси көп тараўларды қамтыйды, соның ишинде физикалық билимлендириў, илимий аўдарма ҳәм қарақалпақ мәдений мийрасын сақлаў. Фундаменталлық физика текстлерин қарақалпақ тилине аўдарыў бойынша кең көлемли жумыслары арқалы ол илимий билимлерди қарақалпақ тилинде сөйлейтуғын студентлер ҳәм изертлеўшилер ушын жеткерилиўли етти. Оның илим менен мәденият алдындағы садықлығы ҳәзирги заман академиялық изертлеўлери менен дәстүрий мийрасты сақлаў арасындағы көпирдиң үлгиси болып табылады.',
                 'footer-text': '© 2024 Профессор Бахтияр Әбдикамалов. Барлық ҳуқықлар қорғалған.',
-                'download': 'Жүклеп алыў'
+                'download': 'Жүклеп алыў',
+                'address': 'Физика кафедрасы, Қарақалпақ мәмлекетлик университети, Нөкис',
+                'back-to-categories': 'Категорияларға қайтыў'
             }
         };
 
@@ -835,6 +950,12 @@
             if (sectionId !== 'categories' && sectionId !== 'about') {
                 populateContent(sectionId);
             }
+            
+            // Scroll to top when changing sections
+            window.scrollTo(0, 0);
+            
+            // Update translations for dynamic elements
+            setLanguage(currentLang);
         }
 
         // Populate content
