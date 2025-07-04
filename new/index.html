@@ -579,7 +579,8 @@
                 'footer-text': '© 2024 Professor Bakhtiyar Abdikamalov. All rights reserved.',
                 'download': 'Download',
                 'address': 'Department of Physics, Karakalpak State University, Nukus',
-                'back-to-categories': 'Back to Categories'
+                'back-to-categories': 'Back to Categories',
+                'search-results': 'Search Results'
             },
             ru: {
                 'site-title': 'Академические работы',
@@ -614,7 +615,8 @@
                 'footer-text': '© 2024 Профессор Бахтияр Абдикамалов. Все права защищены.',
                 'download': 'Скачать',
                 'address': 'Кафедра физики, Каракалпакский государственный университет, Нукус',
-                'back-to-categories': 'Вернуться к категориям'
+                'back-to-categories': 'Вернуться к категориям',
+                'search-results': 'Результаты поиска'
             },
             kaa: {
                 'site-title': 'Академиялық мийнетлер',
@@ -649,7 +651,8 @@
                 'footer-text': '© 2024 Профессор Бахтияр Әбдикамалов. Барлық ҳуқықлар қорғалған.',
                 'download': 'Жүклеп алыў',
                 'address': 'Физика кафедрасы, Қарақалпақ мәмлекетлик университети, Нөкис',
-                'back-to-categories': 'Категорияларға қайтыў'
+                'back-to-categories': 'Категорияларға қайтыў',
+                'search-results': 'Излеў нәтийжелери'
             }
         };
 
@@ -982,18 +985,130 @@
 
         // Search functionality
         function searchContent(query) {
-            if (!query) {
+            if (!query.trim()) {
                 showSection('categories');
                 return;
             }
             
-            // This is a simple implementation - you can enhance it
-            console.log('Searching for:', query);
+            const searchTerm = query.toLowerCase();
+            const results = [];
+            
+            // Search through all content categories
+            Object.entries(contentData).forEach(([categoryId, items]) => {
+                items.forEach(item => {
+                    // Search in title, author, and file names
+                    const titleMatch = Object.values(item.title).some(t => t.toLowerCase().includes(searchTerm));
+                    const authorMatch = Object.values(item.author).some(a => a.toLowerCase().includes(searchTerm));
+                    const fileMatch = item.files.some(f => f.type.toLowerCase().includes(searchTerm));
+                    
+                    if (titleMatch || authorMatch || fileMatch) {
+                        results.push({
+                            ...item,
+                            category: categoryId,
+                            categoryName: getCategoryName(categoryId)
+                        });
+                    }
+                });
+            });
+            
+            // Show search results
+            showSearchResults(results, query);
+        }
+        
+        // Get category name
+        function getCategoryName(categoryId) {
+            const names = {
+                'kk-lit': { en: 'Karakalpak Literature', ru: 'Каракалпакская литература', kaa: 'Қарақалпақ әдебияты' },
+                'physics-books': { en: 'Physics Textbooks', ru: 'Учебники по физике', kaa: 'Физика оқыў китаплары' },
+                'scientific-articles': { en: 'Scientific Articles', ru: 'Научные статьи', kaa: 'Илимий мақалалар' },
+                'educational': { en: 'Educational Materials', ru: 'Учебные материалы', kaa: 'Оқыў материаллары' },
+                'translations': { en: 'Translations', ru: 'Переводы', kaa: 'Аўдармалар' },
+                'cultural': { en: 'Cultural Heritage', ru: 'Культурное наследие', kaa: 'Мәденият мийрасы' }
+            };
+            return names[categoryId] || { en: 'Unknown', ru: 'Неизвестно', kaa: 'Белгисиз' };
+        }
+        
+        // Show search results
+        function showSearchResults(results, query) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Create or update search results section
+            let searchSection = document.getElementById('search-results');
+            if (!searchSection) {
+                searchSection = document.createElement('section');
+                searchSection.id = 'search-results';
+                searchSection.className = 'content-section';
+                searchSection.innerHTML = `
+                    <a href="#" onclick="showSection('categories')" class="back-button">
+                        <span>←</span>
+                        <span data-i18n="back-to-categories">Back to Categories</span>
+                    </a>
+                    <h2><span data-i18n="search-results">Search Results</span>: "<span id="search-query"></span>"</h2>
+                    <p id="search-count"></p>
+                    <div class="content-grid" id="search-results-content"></div>
+                `;
+                document.querySelector('main').appendChild(searchSection);
+            }
+            
+            // Update search query and count
+            document.getElementById('search-query').textContent = query;
+            const countText = {
+                en: `Found ${results.length} result${results.length !== 1 ? 's' : ''}`,
+                ru: `Найдено результатов: ${results.length}`,
+                kaa: `Табылған нәтийжелер: ${results.length}`
+            };
+            document.getElementById('search-count').textContent = countText[currentLang] || countText.en;
+            
+            // Populate results
+            const resultsContent = document.getElementById('search-results-content');
+            if (results.length === 0) {
+                const noResultsText = {
+                    en: 'No results found. Try different keywords.',
+                    ru: 'Результаты не найдены. Попробуйте другие ключевые слова.',
+                    kaa: 'Нәтийжелер табылмады. Басқа кийт сөзлерди сынап көриң.'
+                };
+                resultsContent.innerHTML = `<p style="text-align: center; color: var(--text-light); padding: 2rem;">${noResultsText[currentLang] || noResultsText.en}</p>`;
+            } else {
+                resultsContent.innerHTML = results.map(item => `
+                    <div class="content-item">
+                        <div class="content-info">
+                            <h4>${item.title[currentLang] || item.title.en}</h4>
+                            <p>${item.author[currentLang] || item.author.en}</p>
+                            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.25rem;">
+                                ${item.categoryName[currentLang] || item.categoryName.en}
+                            </p>
+                        </div>
+                        <div class="download-links">
+                            ${item.files.map(file => `
+                                <a href="../${file.url}" class="download-btn" target="_blank">
+                                    ${file.type}
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Show search results section
+            searchSection.classList.add('active');
+            
+            // Update translations
+            setLanguage(currentLang);
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage('en');
+            
+            // Add Enter key support for search
+            document.querySelector('.search-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchContent(e.target.value);
+                }
+            });
         });
     </script>
 </body>
