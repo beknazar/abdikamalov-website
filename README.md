@@ -17,7 +17,10 @@ python3 download_files.py
 
 ## GitHub Pages
 
-This site is hosted using GitHub Pages. Visit: https://beknazar.github.io/abdikamalov-website/
+This site is hosted using GitHub Pages with a custom domain.
+
+- **Primary URL:** https://abdikamalov.com
+- **GitHub Pages URL:** https://beknazar.github.io/abdikamalov-website/
 
 ## License
 
