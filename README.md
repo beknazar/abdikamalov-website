@@ -17,7 +17,7 @@ python3 download_files.py
 
 ## GitHub Pages
 
-This site is hosted using GitHub Pages. Visit: https://[your-username].github.io/[repository-name]/
+This site is hosted using GitHub Pages. Visit: https://beknazar.github.io/abdikamalov-website/
 
 ## License
 
