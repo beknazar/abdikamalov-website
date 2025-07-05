@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10;url=https://abdikamalov.com">
+    <title>Website Moved - New Location: abdikamalov.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a5490 0%, #2c7fb8 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .new-url {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .new-url:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .redirect-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 2rem;
+        }
+
+        .countdown {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .lang-switch {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .new-url {
+                font-size: 1.25rem;
+                padding: 0.75rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🚀</div>
+        <h1 data-lang="title">Website Has Moved!</h1>
+        
+        <p data-lang="description">
+            Professor Abdikamalov's website has moved to a new, modern location with improved features and faster access.
+        </p>
+        
+        <a href="https://abdikamalov.com" class="new-url">abdikamalov.com</a>
+        
+        <p class="redirect-info">
+            <span data-lang="redirect">You will be automatically redirected in</span> 
+            <span class="countdown">10</span> 
+            <span data-lang="seconds">seconds</span>...
+        </p>
+        
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" onclick="setLanguage('ru')">Русский</button>
+            <button class="lang-btn" onclick="setLanguage('kaa')">Қарақалпақша</button>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "Website Has Moved!",
+                description: "Professor Abdikamalov's website has moved to a new, modern location with improved features and faster access.",
+                redirect: "You will be automatically redirected in",
+                seconds: "seconds"
+            },
+            ru: {
+                title: "Сайт переехал!",
+                description: "Сайт профессора Абдикамалова переехал на новый, современный адрес с улучшенными функциями и более быстрым доступом.",
+                redirect: "Вы будете автоматически перенаправлены через",
+                seconds: "секунд"
+            },
+            kaa: {
+                title: "Сайт көшти!",
+                description: "Профессор Әбдикамаловтың сайты жаңа, заманагөй адреске көшти. Жақсартылған функциялар ҳәм тез жетиў мүмкиншилиги менен.",
+                redirect: "Сиз автоматты түрде жөнелтилесиз",
+                seconds: "секундтан соң"
+            }
+        };
+
+        let currentLang = 'en';
+        let countdown = 10;
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(lang) || 
+                    (lang === 'ru' && btn.textContent === 'Русский') ||
+                    (lang === 'kaa' && btn.textContent === 'Қарақалпақша')) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Countdown timer
+        const countdownElement = document.querySelector('.countdown');
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = 'https://abdikamalov.com';
+            }
+        }, 1000);
+
+        // Detect browser language
+        const browserLang = navigator.language.substring(0, 2);
+        if (browserLang === 'ru') {
+            setLanguage('ru');
+        } else if (browserLang === 'kk' || browserLang === 'uz') {
+            setLanguage('kaa');
+        }
+    </script>
+</body>
+</html>
