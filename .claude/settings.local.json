@@ -12,7 +12,8 @@
       "Bash(gh repo view:*)",
       "Bash(gh api:*)",
       "Bash(mkdir:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(find:*)"
     ],
     "deny": []
   }
