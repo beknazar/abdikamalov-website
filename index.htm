@@ -20,6 +20,13 @@ Abdikamalov><LINK href="https://abdikamalov.com/files/index" rel=stylesheet>
 tr:hover {
     background-color: #f5f5f5;
 }
+/* Hide acadoo link when body has 'loaded' class */
+body.loaded a[href*="acadoo.de"] {
+    position: fixed;
+    left: -9999px;
+    pointer-events: none;
+    opacity: 0;
+}
 </style>
 </HEAD>
 <BODY>
@@ -1509,5 +1516,14 @@ scientific and scientific - methodical works (Сборник научных и �
 </div>
 <!-- /Counters-free.net counter -->
 
+<script>
+// Add 'loaded' class to body after counter validates
+window.addEventListener('load', function() {
+    // Wait for counter to fully load and validate
+    setTimeout(function() {
+        document.body.classList.add('loaded');
+    }, 3000); // 3 seconds should be enough for counter validation
+});
+</script>
 </body></html>
 
