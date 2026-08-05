@@ -20,13 +20,6 @@ Abdikamalov><LINK href="https://abdikamalov.com/files/index" rel=stylesheet>
 tr:hover {
     background-color: #f5f5f5;
 }
-/* Hide acadoo link when body has 'loaded' class */
-body.loaded a[href*="acadoo.de"] {
-    position: fixed;
-    left: -9999px;
-    pointer-events: none;
-    opacity: 0;
-}
 </style>
 </HEAD>
 <BODY>
@@ -1506,21 +1499,10 @@ scientific and scientific - methodical works (Сборник научных и �
 <p>&nbsp;</p>
 
 
-<!-- Counters-free.net counter -->
+<!-- Visitor counter (hits.sh - plain image, no scripts) -->
 <div style="text-align: center; margin: 20px 0;">
-<script type="text/javascript" src="https://www.counters-free.net/count/i7uk"></script><br>
-<a href='https://www.acadoo.de/'>Acadoo</a> <script type='text/javascript' src='https://www.whomania.com/ctr?id=49d97dcf21d7f26fac25feedc2236fcc55091599'></script>
+<img src="https://hits.sh/abdikamalov.com.svg?label=Visitors&color=2266cc" alt="Visitors" height="20">
 </div>
-<!-- /Counters-free.net counter -->
-
-<script>
-// Add 'loaded' class to body after counter validates
-window.addEventListener('load', function() {
-    // Wait for counter to fully load and validate
-    setTimeout(function() {
-        document.body.classList.add('loaded');
-    }, 3000); // 3 seconds should be enough for counter validation
-});
-</script>
+<!-- /Visitor counter -->
 </body></html>
 
