@@ -25,7 +25,7 @@ def fix_links(content):
         # Common Karakalpak/Russian typos
         (r'\bkarakalpk\b', 'karakalpak', re.IGNORECASE),
         (r'\bkaralpak\b', 'karakalpak', re.IGNORECASE),
-        (r'\bАбдикамалов\b', 'Абдыкамалов'),  # Fix Russian spelling if needed
+        (r'\bАбдыкамалов\b', 'Абдикамалов'),  # Correct surname spelling (Абдикамалов, not Абдыкамалов)
         (r'\bлитратура\b', 'литература', re.IGNORECASE),
         (r'\bадебият\b', 'әдебият'),  # Karakalpak spelling
         (r'\bқарақалпқ\b', 'қарақалпақ'),  # Karakalpak spelling
